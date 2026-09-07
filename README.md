@@ -1,20 +1,21 @@
 # fixtures
 
-Scratch repo for [xdlc-agent](https://github.com/xdlc-labs/xdlc-agent) CI Fix tests.
+Sample pull requests that fail CI, so you can watch [xdlc-agent](https://github.com/xdlc-labs/xdlc-agent) open a **Fix**.
 
 [![CI](https://github.com/xdlc-labs/fixtures/actions/workflows/ci.yml/badge.svg)](https://github.com/xdlc-labs/fixtures/actions/workflows/ci.yml)
 
-The app under review is `src/`. Each fixture overlays files onto that tree and opens a real GitHub PR. Expected outcomes live **only** in the fixture `README.md`, which is never shipped in the PR.
+Point the daemon at this repo, apply a fixture, wait for CI, then see a Fix (or no Fix). The app under review is `src/`. Each fixture copies files onto that tree and opens a real GitHub PR.
 
-The public demo app for GitOps / `/healthz` is [example-service](https://github.com/xdlc-labs/example-service). This repo is the graded scratch pad so `example-service` `main` stays clean.
+Want a running HTTP demo (`/healthz`, `/metrics`) instead? Use [example-service](https://github.com/xdlc-labs/example-service). Leave that repo's `main` alone. Try failing PRs here.
 
-## Bait sterility
+## Keep the PR looking real
 
-Everything the agent can see must read like a real engineer's PR. If the diff, title, or body says "fixture", "E2E", or "planted bug", the model excuses the defect and the fixture tests nothing.
+The coding agent sees the PR. If the title, body, or diff says "fixture", "E2E", or "planted bug", the model excuses the defect and you learn nothing.
+
+Expected outcomes live **only** in `fixtures/<id>/README.md`, which is never shipped in the PR.
 
 - Overlay comments are production comments. Never annotate the defect.
-- `meta.env` `TITLE` / `BODY` are the PR title/body — natural change descriptions.
-- Grading stays in `fixtures/<id>/README.md`.
+- `meta.env` `TITLE` / `BODY` are the PR title and body. Write them like a normal change.
 
 ## Layout
 
@@ -37,7 +38,7 @@ gh pr close <N> --delete-branch
 
 `apply-fixture.sh` always resets to `main` before overlaying.
 
-## Fixture index
+## What each fixture does
 
 | ID | Name | Behavior | Expect |
 |----|------|----------|--------|
@@ -55,7 +56,7 @@ repos:
     gates: [ci]
 ```
 
-Docs: [Getting started](https://xdlc-labs.github.io/documentation/xdlc-agent/getting-started/).
+Then [install xdlc](https://xdlc-labs.github.io/documentation/xdlc-agent/install/) and run `xdlc daemon`. Walkthrough: [Getting started](https://xdlc-labs.github.io/documentation/xdlc-agent/getting-started/).
 
 ## License
 
