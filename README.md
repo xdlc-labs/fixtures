@@ -6,7 +6,7 @@ Scratch repo for [xdlc-agent](https://github.com/xdlc-labs/xdlc-agent) CI Fix te
 
 The app under review is `src/`. Each fixture overlays files onto that tree and opens a real GitHub PR. Expected outcomes live **only** in the fixture `README.md`, which is never shipped in the PR.
 
-The public battleground for GitOps / `/healthz` is [example-service](https://github.com/xdlc-labs/example-service). This repo is the graded scratch pad so `example-service` `main` stays clean.
+The public demo app for GitOps / `/healthz` is [example-service](https://github.com/xdlc-labs/example-service). This repo is the graded scratch pad so `example-service` `main` stays clean.
 
 ## Bait sterility
 
