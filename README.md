@@ -56,7 +56,7 @@ repos:
     gates: [ci]
 ```
 
-Then [install xdlc](https://xdlc-labs.github.io/documentation/xdlc-agent/install/) and run `xdlc daemon`. Walkthrough: [Getting started](https://xdlc-labs.github.io/documentation/xdlc-agent/getting-started/).
+Then [install xdlc](https://xdlc.dev/agent/docs) and run `xdlc daemon`. Walkthrough: [Getting started](https://xdlc.dev/agent/docs/getting-started).
 
 ## License
 
