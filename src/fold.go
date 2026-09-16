@@ -6,5 +6,5 @@ func Fold(b []byte) uint16 {
 	for _, c := range b {
 		n += uint32(c)
 	}
-	return uint16(n)
+	return uint16(n & 0xff)
 }
