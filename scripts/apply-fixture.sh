@@ -6,8 +6,19 @@ ID="${1:-}"
 [[ -n "$ID" ]] || { echo "usage: $0 <fixture-id>" >&2; exit 1; }
 DIR="$ROOT/fixtures/$ID"
 [[ -d "$DIR/overlay" ]] || { echo "missing $DIR/overlay" >&2; exit 1; }
-# shellcheck disable=SC1091
-source "$DIR/meta.env"
+# TITLE/BODY often contain colons and spaces (`fix: include high byte`).
+# `source` treats `TITLE=fix: include …` as TITLE=fix: plus a command.
+while IFS= read -r line || [[ -n "$line" ]]; do
+  [[ -z "$line" || "$line" == \#* ]] && continue
+  key="${line%%=*}"
+  val="${line#*=}"
+  if [[ ${#val} -ge 2 && "$val" == \'*\' ]]; then
+    val="${val:1:${#val}-2}"
+  elif [[ ${#val} -ge 2 && "$val" == \"*\" ]]; then
+    val="${val:1:${#val}-2}"
+  fi
+  printf -v "$key" '%s' "$val"
+done < "$DIR/meta.env"
 
 cd "$ROOT"
 git fetch origin main
